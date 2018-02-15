@@ -176,14 +176,15 @@ class Addon extends Component {
     });
   }
 
-  handleAction(moduleUuid, action, event=null) {
-    event? event.preventDefault(): this.hideModal();
+  handleAction(event, moduleUuid, action) {
+    event ? event.preventDefault(): this.hideModal();
     if (action === 'stop') {
-      this.setState((prevState, props) => {
-        return {
-          stopping: true,
-        };
-      });
+      confirm('Are you sure you want to stop this app') ?
+        this.setState((prevState, props) => {
+          return {
+            stopping: true,
+          };
+        }):null;
     } else if (action === 'start') {
       this.setState({
         starting: true
@@ -484,7 +485,7 @@ class Addon extends Component {
                 </button>
                 <span>
                   { appType === 'module' ?
-                      app.started ?
+                    app.started ?
                       <button
                         type="button"
                         className="btn btn-primary module-control"
@@ -496,7 +497,7 @@ class Addon extends Component {
                       <button
                         type="button"
                         className="btn btn-success module-control"
-                        onClick={(e) => this.handleAction(e, app.uuid, "start")}
+                        onClick={(event) => this.handleAction(event, app.uuid, "start")}
                       >
                           Start
                       </button>

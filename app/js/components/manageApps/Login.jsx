@@ -9,7 +9,7 @@ class Login extends Component {
       username: '',
       password: '',
       show: false
-    }
+    };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
